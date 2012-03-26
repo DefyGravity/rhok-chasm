@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+
+/** START INFO TAB**/
+#infoData input {
+  margin:10px;
+}
+/** END INFO TAB**/
+/** START SOIL TAB**/
+.soil-table {
+  margin-top:10px;
+}
+/** END SOIL TAB**/

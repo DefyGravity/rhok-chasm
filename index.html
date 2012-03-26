@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/index.css" />
+<link rel="Stylesheet" type="text/css"
+	href="css/black-tie/jquery-ui-1.8.18.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/jsxgraph.css" />
+
+<script type="text/javascript" src="lib/jsxgraphcore-readable.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="lib/rhok-widget.js"></script>
+<script type="text/javascript" src="lib/index.js"></script>
+
+<script type="text/javascript" src="db/_utils/script/jquery.couch.js"></script>
+
+<script type="text/javascript" src="lib/login.js"></script>
+<script type="text/javascript" src="lib/d3.v2.js"></script>
+<script type="text/javascript" src="lib/translate.js"></script>
+<script type="text/javascript" src="lib/chasmArrayUtils.js"></script>
+<script type="text/javascript" src="lib/trig.js"></script>
+<script type="text/javascript" src="lib/model.js"></script>
+<script type="text/javascript" src="lib/graph.js"></script>
+
+
+<title>rhok - CHASM Web UI</title>
+</head>
+<body>
+	<form id="form" action="process.php" method="post">
+		<div id="page">
+			<fieldset>
+				<div id="logo"></div>
+				<div id="login">
+					<div>
+						<span><label for="infoData:user">User:</label><input
+							id="infoData:user" name="info[user]" type="text" /> </span> <span><label
+							for="infoData:password">Password:</label><input
+							id="infoData:password" name="info[password]" type="password" /> </span>
+						<span><input id="infoData:loginLogout" type="button" value="Login" />
+						</span>
+					</div>
+				</div>
+			</fieldset>
+			<div id="main-col">
+				<div id="tabs">
+					<ul>
+						<li><a href="#tab-info">Info</a></li>
+						<li><a href="tab-profile.html">Profile</a></li>
+						<li><a href="tab-soil.html">Soil</a></li>
+						<li><a href="tab-water.html">Water</a></li>
+						<li><a href="tab-rain.html">Rain</a></li>
+					</ul>
+					<div id="tab-info" class="tab-info">
+						<p>Enter the slope name and location</p>
+						<table>
+							<tbody id="infoData">
+								<tr>
+									<th>Local File Listing</th>
+									<td><select id="infoData:fileList" disabled="disabled"
+										name="info[fileList]">
+											<option value="" selected="selected"></option>
+									</select>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">Name</th>
+									<td><input name="info[name]" id="infoData:name" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">Latitude <br /> <span
+										style="font-weight: normal; font-size: smaller;">in decimal
+											degrees</span>
+									</th>
+									<td><input name="info[latitude]" id="infoData:latitude"
+										type="text" /></td>
+								</tr>
+								<tr>
+									<th scope="row">Longitude <br /> <span
+										style="font-weight: normal; font-size: smaller;">in decimal
+											degrees</span>
+									</th>
+									<td><input name="info[longitude]" id="infoData:longitude"
+										type="text" /></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="callout">(assume WGS84 coordinate
+										system)</td>
+								</tr>
+							</tbody>
+						</table>
+						<div
+							style="text-align: center; background-color: grey; width: 100%; height: 300px;">
+							Map</div>
+					</div>
+				</div>
+			</div>
+			<div id="graph-col">
+				<svg id="graph">
+					<circle class="little" cx="180" cy="45" r="12"></circle>
+					<circle class="little" cx="60" cy="90" r="12"></circle>
+					<circle class="little" cx="300" cy="135" r="12"></circle>
+				</svg>
+				<div id="compute-button-holder">
+					<input id="compute-button" class="button" type="submit"
+						value="Create" />
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
