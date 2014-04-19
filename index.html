@@ -4,113 +4,88 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="css/index.css" />
-<link rel="Stylesheet" type="text/css"
-	href="css/black-tie/jquery-ui-1.8.18.custom.css" />
-<link rel="stylesheet" type="text/css" href="css/jsxgraph.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="lib/jquery-ui-1.10.3/themes/base/jquery-ui.css" />
 
-<script type="text/javascript" src="lib/jsxgraphcore-readable.js"></script>
 <script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	src="lib/jquery-ui-1.10.3/jquery-1.9.1.js"></script>
 <script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-<script type="text/javascript" src="lib/rhok-widget.js"></script>
-<script type="text/javascript" src="lib/index.js"></script>
-
-<script type="text/javascript" src="db/_utils/script/jquery.couch.js"></script>
-
+	src="lib/jquery-ui-1.10.3/ui/jquery-ui.js"></script>
 <script type="text/javascript" src="lib/login.js"></script>
-<script type="text/javascript" src="lib/d3.v2.js"></script>
-<script type="text/javascript" src="lib/translate.js"></script>
+<script type="text/javascript" src="lib/main.js"></script>
+
+<script type="text/javascript"
+	src="http://localhost:5984/_utils/script/jquery.couch.js"></script>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="lib/translate.js"></script>
 <script type="text/javascript" src="lib/chasmArrayUtils.js"></script>
 <script type="text/javascript" src="lib/trig.js"></script>
 <script type="text/javascript" src="lib/model.js"></script>
-<script type="text/javascript" src="lib/graph.js"></script>
+<script type="text/javascript" src="lib/graph.js"></script> -->
 
 
-<title>rhok - CHASM Web UI</title>
 </head>
 <body>
-	<form id="form" action="process.php" method="post">
-		<div id="page">
-			<fieldset>
-				<div id="logo"></div>
-				<div id="login">
+	<div id="page">
+		<fieldset>
+
+			<form class="login">
+				<div>
+					<span><label>User:<input name="name" type="text" /></label></span>
+					<span><label>Password:<input name="password"
+							type="password" /></label> <span><input type="button"
+							class="submit-login" value="Login" /></span>
+				</div>
+			</form>
+		</fieldset>
+		<div id="tabs">
+			<ul>
+				<li><a href="#tab-info">Info</a></li>
+				<li><a href="#tab-profile">Profile</a></li>
+				<li><a href="#tab-soil">Soil</a></li>
+				<li><a href="#tab-water">Water</a></li>
+				<li><a href="#tab-rain">Rain</a></li>
+			</ul>
+			<div id="tab-info" class="tab info">
+				<form class="slope">
 					<div>
-						<span><label for="infoData:user">User:</label><input
-							id="infoData:user" name="info[user]" type="text" /> </span> <span><label
-							for="infoData:password">Password:</label><input
-							id="infoData:password" name="info[password]" type="password" /> </span>
-						<span><input id="infoData:loginLogout" type="button" value="Login" />
-						</span>
+						<label>Name:<input class="slopes" name="slopes"
+							type="text"></input></label>
 					</div>
-				</div>
-			</fieldset>
-			<div id="main-col">
-				<div id="tabs">
-					<ul>
-						<li><a href="#tab-info">Info</a></li>
-						<li><a href="tab-profile.html">Profile</a></li>
-						<li><a href="tab-soil.html">Soil</a></li>
-						<li><a href="tab-water.html">Water</a></li>
-						<li><a href="tab-rain.html">Rain</a></li>
-					</ul>
-					<div id="tab-info" class="tab-info">
-						<p>Enter the slope name and location</p>
-						<table>
-							<tbody id="infoData">
-								<tr>
-									<th>Local File Listing</th>
-									<td><select id="infoData:fileList" disabled="disabled"
-										name="info[fileList]">
-											<option value="" selected="selected"></option>
-									</select>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">Name</th>
-									<td><input name="info[name]" id="infoData:name" type="text" />
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">Latitude <br /> <span
-										style="font-weight: normal; font-size: smaller;">in decimal
-											degrees</span>
-									</th>
-									<td><input name="info[latitude]" id="infoData:latitude"
-										type="text" /></td>
-								</tr>
-								<tr>
-									<th scope="row">Longitude <br /> <span
-										style="font-weight: normal; font-size: smaller;">in decimal
-											degrees</span>
-									</th>
-									<td><input name="info[longitude]" id="infoData:longitude"
-										type="text" /></td>
-								</tr>
-								<tr>
-									<td colspan="2" class="callout">(assume WGS84 coordinate
-										system)</td>
-								</tr>
-							</tbody>
-						</table>
-						<div
-							style="text-align: center; background-color: grey; width: 100%; height: 300px;">
-							Map</div>
+					<div>
+						<label>ID:<input class="docId" name="docId" type="text"></input></label>
 					</div>
-				</div>
+					<div>
+						<label>revision:<input class="revision" name="_rev"></input></label>
+						<div>
+							<label>Latitude (in decimal degrees)<input
+								name="latitude"></input></label>
+						</div>
+						<div></div>
+						<label>Longitude (in decimal degrees)<input
+							name="longitude"></input></label>
+					</div>
+				</form>
 			</div>
-			<div id="graph-col">
-				<svg id="graph">
-					<circle class="little" cx="180" cy="45" r="12"></circle>
-					<circle class="little" cx="60" cy="90" r="12"></circle>
-					<circle class="little" cx="300" cy="135" r="12"></circle>
-				</svg>
-				<div id="compute-button-holder">
-					<input id="compute-button" class="button" type="submit"
-						value="Create" />
-				</div>
+			<div id="tab-profile" class="tab profile">
+				
+					<fieldset>
+					<legend>Profile Segment</legend>
+						<label>Starting Altitude(m):<input type="number" name="altitude" min="1" ></input></label>
+						<label>Length of Segment (m): <input type="number" name="length" min="1" step="0.1"></input></label>
+						<label>Angle (degrees):<input type="number" name="angle"></input></label>
+					</fieldset>
 			</div>
+			<div id="tab-soil" class="tab soil"></div>
+			<div id="tab-water" class="tab water"></div>
+			<div id="tab-rain" class="tab rain"></div>
 		</div>
-	</form>
+<div>
+		<svg id="graph">
+				
+			</svg>
+		</div>
+	</div>
 </body>
 </html>
